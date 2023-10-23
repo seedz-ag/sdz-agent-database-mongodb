@@ -8,7 +8,9 @@ class Connector {
     async connect() {
         if (!this.connection) {
             try {
-                const uri = `mongodb://${this.config.username}:${this.config.password}@${this.config.host}:${this.config.port}/?maxPoolSize=1&w=majority`;
+                const uri = this.config.port
+                    ? `mongodb://${this.config.username}:${this.config.password}@${this.config.host}:${this.config.port}/?maxPoolSize=1&w=majority`
+                    : `mongodb+srv://${this.config.username}:${this.config.password}@${this.config.host}/?maxPoolSize=1&w=majority`;
                 const client = new mongodb_1.MongoClient(uri);
                 await client.connect();
                 this.connection = client;
@@ -38,7 +40,8 @@ class Connector {
             const database = this.connection.db(this.config.schema);
             const collection = database.collection(input["collection"]);
             const command = collection[input["command"]].bind(collection);
-            resultSet = await command(input[input["command"]]);
+            resultSet = await command(input[input["command"]]).toArray();
+            return resultSet;
         }
         catch (e) {
             console.log(e);
