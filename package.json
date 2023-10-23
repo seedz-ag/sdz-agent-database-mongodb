@@ -1,0 +1,20 @@
+{
+  "name": "sdz-agent-database-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --declaration"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "APACHE",
+  "dependencies": {
+    "@types/node": "^20.8.7",
+    "mongodb": "^6.2.0",
+    "sdz-agent-types": "https://github.com/seedz-ag/sdz-agent-types.git"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
