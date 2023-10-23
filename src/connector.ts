@@ -15,6 +15,7 @@ export default class Connector implements ConnectorInterface {
         const uri = `mongodb://${this.config.username}:${this.config.password}@${this.config.host}:${this.config.port}/?maxPoolSize=1&w=majority`;
         const client = new MongoClient(uri);
         await client.connect();
+        this.connection = client;
       } catch (e) {
         console.log(e);
       }
